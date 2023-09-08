@@ -137,9 +137,27 @@ int main(void) {
         c, CurrentTime
     );
 
+    uint32_t n = 0;
     XEvent ev;
     XSync(dpy, false);
-    while (running && !XNextEvent(dpy, &ev)) {
+    while (running) {
+        bool found = XCheckMaskEvent(
+            dpy,
+            (KeyPressMask | ExposureMask | 
+             PointerMotionMask | ButtonPressMask),
+            &ev
+        );
+
+        if (n > 20000) {
+            n = 0;
+            do_image();
+        }
+
+        if (!found) {
+            n++;
+            continue;
+        }
+
         if (ev.type == KeyPress || ev.type == KeyRelease) {
             switch (ev.xkey.keycode) {
                 case 9:  // ESC
@@ -194,7 +212,7 @@ int main(void) {
                 half_capture = capture / 2;
                 do_image();
             } else {
-                running = false;
+                // running = false;
             }
         }
     }
