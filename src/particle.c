@@ -211,8 +211,17 @@ int main(void) {
                 capture = box / ratio;
                 half_capture = capture / 2;
                 do_image();
+            } else if (ev.xbutton.button == 3) {
+                int32_t mx = ev.xbutton.x_root - box / 2;
+                int32_t my = ev.xbutton.y_root - box / 2;
+                if (mx < 10) mx = 10;
+                if (my < 10) my = 10;
+                if (mx > dpy_width - box - 10) mx = dpy_width - box - 10;
+                if (my > dpy_height - box - 10) my = dpy_height - box - 10;
+
+                XMoveWindow(dpy, win, mx, my);
             } else {
-                // running = false;
+                running = false;
             }
         }
     }
