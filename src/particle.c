@@ -34,6 +34,8 @@ uint8_t ratio = 4;
 int32_t capture = 128;
 int32_t half_capture = 64;
 
+Window target;
+
 uint8_t image_data[box * box * 4];
 
 void do_image(void) {
@@ -124,7 +126,7 @@ int main(void) {
     uint32_t m = 0;
 
     XQueryPointer(
-        dpy, root, &g, &g,
+        dpy, root, &g, &target,
         &x, &y, &i, &i, &m
     );
 
@@ -136,6 +138,8 @@ int main(void) {
         GrabModeAsync, GrabModeAsync, None,
         c, CurrentTime
     );
+
+    XGrabKey(dpy, 24, 0, root, true, GrabModeAsync, GrabModeAsync);
 
     uint32_t n = 0;
     XEvent ev;
