@@ -6,9 +6,14 @@ FLAGS += -lX11 -D_GNU_SOURCE
 
 PARTICLE = bin/particle
 DAMIXER  = bin/damixer
+CRONOS   = bin/cronos
 
-all: clear $(PARTICLE) $(DAMIXER)
+all: clear $(PARTICLE) $(DAMIXER) $(CRONOS)
 
+$(CRONOS): src/cronos.c
+	echo $@
+	mkdir -p $(@D)
+	$(CC) $(FLAGS) $< -o $@
 
 $(PARTICLE): src/particle.c
 	echo $@
@@ -36,5 +41,5 @@ install: all
 
 
 .PHONY: clear clean all install
-.SILENT: clear clean all $(PARTICLE) $(DAMIXER)
+.SILENT: clear clean all $(PARTICLE) $(DAMIXER) $(CRONOS)
 
