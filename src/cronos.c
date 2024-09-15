@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 
     while (1) {
         if (timer == 0) break;
-        printf("\33[Atimer: %lu                    \n", timer);
+        printf("\33[Atimer: %lu                                                   \n", timer);
         sleep(1);
         --timer;
     }
