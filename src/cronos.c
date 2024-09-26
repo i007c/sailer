@@ -27,5 +27,7 @@ int main(int argc, char **argv) {
         --timer;
     }
 
+    system("notify-send 'Times Up' -u critical");
+
     return 0;
 }
