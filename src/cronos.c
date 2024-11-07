@@ -20,9 +20,10 @@ int main(int argc, char **argv) {
         timer += strtoull(argv[3], NULL, 10) * 3600;
     }
 
+    putchar('\n');
     while (1) {
         if (timer == 0) break;
-        printf("\33[Atimer: %lu                                                   \n", timer);
+        printf("\33[Atimer: %lu          \n", timer);
         sleep(1);
         --timer;
     }
