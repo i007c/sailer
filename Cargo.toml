@@ -1,0 +1,12 @@
+[package]
+name = "sailer"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "2fa"
+path = "src/2fa.rs"
+
+[dependencies]
+hmac = "0.13"
+sha1 = "0.11"
