@@ -68,10 +68,6 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     if args.len() < 2 {
         eprintln!("usage: 2fa <name> [hotp-counter] (reads pass entry 2fa/<name>)");
-        exit(1);
-    }
-
-    if args[1] == "list" {
         let err = Command::new("pass").arg("show").arg("2fa").exec();
         eprintln!("failed to run the command: `pass show 2fa`\n{err:#?}");
         exit(1);
